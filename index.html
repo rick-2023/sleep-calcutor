@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>睡眠计算器 - Sleep Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" fill="#4A90E2" opacity="0.2"/>
+                    <path d="M20 10C20 10 15 15 15 20C15 25 20 30 20 30C20 30 25 25 25 20C25 15 20 10 20 10Z" fill="#4A90E2"/>
+                    <circle cx="20" cy="20" r="3" fill="#fff"/>
+                </svg>
+                <h1>睡眠计算器</h1>
+            </div>
+        </header>
+
+        <main id="mainContent">
+            <!-- 初始界面 -->
+            <div id="calculatorView" class="view active">
+                <div class="calculator-card">
+                    <h2>你想在什么时间醒来？</h2>
+                    <p class="subtitle">选择你的理想起床时间</p>
+                    
+                    <div class="time-selector">
+                        <div class="selector-group">
+                            <label>小时</label>
+                            <select id="hourSelect">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7" selected>7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        
+                        <div class="selector-group">
+                            <label>分钟</label>
+                            <select id="minuteSelect">
+                                <option value="00" selected>00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                        
+                        <div class="selector-group">
+                            <label>上午/下午</label>
+                            <select id="periodSelect">
+                                <option value="AM" selected>上午</option>
+                                <option value="PM">下午</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="calculateBedtime()">
+                            计算就寝时间
+                        </button>
+                        <button class="btn btn-secondary" onclick="calculateWakeup()">
+                            计算起床时间
+                        </button>
+                    </div>
+
+                    <div class="info-box">
+                        <p>💤 平均入睡时间约为14分钟</p>
+                        <p>🌙 一个完整的睡眠周期约为90分钟</p>
+                        <p>✨ 建议完成4-6个睡眠周期</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 就寝时间结果 -->
+            <div id="bedtimeResults" class="view">
+                <div class="results-card">
+                    <button class="back-btn" onclick="goBack()">← 返回</button>
+                    
+                    <h2>建议的就寝时间</h2>
+                    <p class="wake-time">起床时间: <span id="selectedWakeTime"></span></p>
+                    
+                    <div class="results-grid" id="bedtimeList">
+                        <!-- 动态生成 -->
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>提示：</strong>选择在睡眠周期结束时醒来，你会感觉更清醒！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 起床时间结果 -->
+            <div id="wakeupResults" class="view">
+                <div class="results-card">
+                    <button class="back-btn" onclick="goBack()">← 返回</button>
+                    
+                    <h2>建议的起床时间</h2>
+                    <p class="wake-time">如果你现在入睡...</p>
+                    
+                    <div class="results-grid" id="wakeupList">
+                        <!-- 动态生成 -->
+                    </div>
+                    
+                    <div class="tip">
+                        <strong>提示：</strong>在睡眠周期之间醒来会让你感觉更有精神！
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 睡眠计算器 | <a href="#">隐私政策</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
